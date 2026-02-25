@@ -2,7 +2,7 @@
 #include <vector>
 
 using namespace std;
-bool searchMatrix(vector<vector<int>>& matrix, int target) {
+bool searchMatrix(vector<vector<int>>& matrix, int target) { // O(m+n) // Type 2 (both rows and cols inc.) 240
     int m = matrix.size();
     int n = matrix[0].size();
 
@@ -21,7 +21,7 @@ bool searchMatrix(vector<vector<int>>& matrix, int target) {
     return false;
 }
 
-bool searchMatrix(vector<vector<int>>& matrix, int target) {
+bool searchMatrix(vector<vector<int>>& matrix, int target) { // O(log(m*n)) Type 1 (falttened is inc.) 74
     int rows = matrix.size();
     int cols = matrix[0].size();
 
