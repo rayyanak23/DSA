@@ -31,7 +31,7 @@ vector<int> spiralOrder(vector<vector<int>>& mat) { // O(m*n)
                 ans.push_back(mat[i][scol]);
             }
         }
-        srow++, erow--;
+        srow++, erow--; // peel like onion
         scol++, ecol--;
     }
     return ans;
