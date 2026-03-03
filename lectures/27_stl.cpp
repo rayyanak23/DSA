@@ -5,6 +5,10 @@
 #include <stack>
 #include <queue>
 #include <map>
+#include <unordered_map>
+#include <set>
+#include <algorithm>
+
 using namespace std;
 
 // int main(){
@@ -238,27 +242,160 @@ using namespace std;
 //     return 0;
 // }
 
+// int main(){
+
+//     map<string, int> m;
+//     m["tv"] = 100;
+//     m["laptop"] = 100;
+//     m["headphone"] = 50;
+//     m["tablet"] = 120;
+//     m["watch"] = 50;
+//     m.insert({"camera",25});
+//     m.emplace("phone",10);
+
+//     for(auto p : m){ // will be lexicographically ascending order of keys
+//         cout << p.first << " " << p.second<< endl;
+
+//     }
+
+//     if(m.find("camera")!= m.end()){
+//         cout << "camera exist as key."<< endl; 
+//     }else{
+//         cout << "camera does not exist as key."<< endl;
+//     }
+
+//     return 0;
+// }
+
+// Multi Map
+
+// int main(){
+//     multimap<string, int> mm;
+
+//     mm.insert({"tv",100});
+//     mm.emplace("laptop",50);
+//     mm.emplace("laptop",50);
+//     mm.emplace("laptop",50);
+//     mm.emplace("laptop",50);
+    
+//     for(auto p:mm){
+//         cout << p.first << " "<<p.second<< endl;
+//     }// will print laptop 4 times
+
+//     // mm.erase("tv"); // will erase all tv
+//     mm.erase(mm.find("laptop")); //will erase tv of given iterator
+//     cout << "after erase using iterator"<< endl;
+
+//     for(auto p:mm){
+//         cout << p.first << " "<<p.second<< endl;
+//     }// will print laptop 3 times
+//     return 0;
+// }
+
+
+// int main(){
+//     unordered_map<string, int> mm; // need to include container
+
+//     mm.insert({"tv",100});
+//     mm.emplace("laptop",50);
+//     mm.emplace("fridge",50);
+//     mm.emplace("phone",50);
+//     mm.emplace("charger",50);
+    
+//     for(auto p:mm){
+//         cout << p.first << " "<<p.second<< endl;
+//     }// will print laptop 4 times
+
+//     // mm.erase("tv"); // will erase all tv
+//     mm.erase(mm.find("laptop")); //will erase tv of given iterator
+//     cout << "after erase using iterator"<< endl;
+
+//     for(auto p:mm){
+//         cout << p.first << " "<<p.second<< endl;
+//     }// will print laptop 3 times
+//     return 0;
+// }
+
+// set
+
+// int main(){
+//     set<int> s;
+
+//     s.insert(1);
+//     s.insert(6);
+//     s.insert(3);
+//     s.insert(7);
+//     s.insert(1);
+//     s.insert(69);
+
+//     cout << "lower bound = " << *(s.lower_bound(6)) << endl; //6
+//     cout << "upper bound = " << *(s.upper_bound(6)) << endl; //6
+    
+//     for(auto val:s){
+//         cout << val << " ";
+//     }
+//     cout << endl;
+
+//     return 0;
+// }
+
+bool comparator(pair<int,int> p1, pair<int, int> p2){ //assume p1 comes before p2
+    if(p1.second < p2.second) return true;
+    else return false;
+
+}
+bool comparator2(pair<int,int> p1, pair<int, int> p2){ //assume p1 comes before p2
+    if(p1.second < p2.second) return true;
+    if(p1.second > p2.second); return false;
+
+    if(p1.first < p2.first) return true;
+    else return false;
+}
+
+// algorithms
+
 int main(){
 
-    map<string, int> m;
-    m["tv"] = 100;
-    m["laptop"] = 100;
-    m["headphone"] = 50;
-    m["tablet"] = 120;
-    m["watch"] = 50;
-    m.insert({"camera",25});
-    m.emplace("phone",10);
-
-    for(auto p : m){ // will be lexicographically ascending order of keys
-        cout << p.first << " " << p.second<< endl;
-
+    int arr[5] = {2,64,1,6,3};
+    sort(arr, arr+5);
+    for(int val : arr){
+        cout << val << " ";
     }
-
-    if(m.find("camera")!= m.end()){
-        cout << "camera exist as key."<< endl; 
-    }else{
-        cout << "camera does not exist as key."<< endl;
+    cout << endl;
+    cout << "in vectors "<< endl; 
+    vector<int> vec = {2,64,1,6,3};
+    sort(vec.begin(), vec.end());
+    for(int val : vec){
+        cout << val << " ";
     }
+    cout << endl;
+    cout << "for decscending "<< endl; 
+    vector<int> vec2 = {2,64,1,6,3};
+    sort(vec2.begin(), vec2.end(),greater<int>());
+    for(int val : vec2){
+        cout << val << " ";
+    }
+    cout << endl;
+
+    cout << "for pairs" << endl;
+    
+    vector<pair<int,int>> vec3 = {{3,1},{2,1},{7,1},{5,2}};
+
+    sort(vec3.begin(), vec3.end()); // by default use use p.first to sort
+    for(auto p : vec3){
+        cout << p.first << " "<< p.second<<endl;
+    }
+    cout << endl;
+
+    // to sort based for second wee need to define cutom comparator
+
+    cout << "using custom comparator for second element "<< endl;
+
+    sort(vec3.begin(), vec3.end(),comparator); 
+    for(auto p : vec3){
+        cout << p.first << " "<< p.second<<endl;
+    }
+    cout << endl;
 
     return 0;
 }
